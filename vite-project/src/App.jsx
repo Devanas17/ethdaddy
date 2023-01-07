@@ -1,11 +1,14 @@
 import {useContext} from "react"
+import Banner from "./components/Banner"
+import Navbar from "./components/Navbar"
 import {AppContext} from "./context/context"
 
 function App() {
 
   return (
     <div className="">
-      <h1>Hello Aman</h1>
+      <Navbar />
+      <Banner />
     </div>
   )
 }
