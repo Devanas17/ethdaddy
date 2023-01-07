@@ -2,11 +2,11 @@ const hre = require("hardhat");
 
 async function main() {
   const ETHDaddy = await hre.ethers.getContractFactory("ETHDaddy");
-  const ethDaddy = await ETHDaddy.deploy();
+  const ethDaddy = await ETHDaddy.deploy("ETH Daddy", "ETHD");
 
   await ethDaddy.deployed();
 
-  console.log(` deployed to ${lock.address}`);
+  console.log(` deployed to ${ethDaddy.address}`);
 }
 
 main().catch((error) => {
