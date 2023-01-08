@@ -11,7 +11,7 @@ const Banner = () => {
           />
           <button
             type="button"
-            className=' bg-black text-white h-[40px] md:h-[60px] px-5'
+            className=' bg-black text-white text-xs sm:text-sm md:text-base h-[40px] md:h-[60px] px-5'
           >
             Buy It
           </button>

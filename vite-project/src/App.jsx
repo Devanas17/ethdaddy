@@ -1,16 +1,15 @@
-import {useContext} from "react"
-import Banner from "./components/Banner"
-import Navbar from "./components/Navbar"
-import {AppContext} from "./context/context"
+import Banner from "./components/Banner";
+import Domains from "./components/Domains";
+import Navbar from "./components/Navbar";
 
 function App() {
-
   return (
     <div className="">
       <Navbar />
       <Banner />
+      <Domains />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
