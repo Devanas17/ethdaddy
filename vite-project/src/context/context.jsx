@@ -88,6 +88,18 @@ export const AppProvider = ({ children }) => {
     loadBlockchainData();
   }, []);
 
+  const ListDomain = async (name, price) => {
+    try {
+      const signer = provider.getSigner();
+      const costInWei = ethers.utils.parseEther(price.toString());
+
+      const transaction = await ethDaddy.connect(signer).list(name, costInWei, {gasLimit: 5000000});
+      await transaction.wait();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -97,6 +109,7 @@ export const AppProvider = ({ children }) => {
         ethDaddy,
         provider,
         loadBlockchainData,
+        ListDomain
       }}
     >
       {children}

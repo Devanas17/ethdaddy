@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { ethers } from "ethers";
 import { AppContext } from "../context/context";
+import Loader from "./Loader";
 
 const Domain = ({ name, isOwned, cost, id, ethDaddy, provider }) => {
   const { loadBlockchainData } = useContext(AppContext);
 
+  const [isLoading, setIsLoading] = useState(false)
   const [owner, setOwner] = useState(null);
   const [hasSold, setHasSold] = useState(false);
 
@@ -17,15 +19,16 @@ const Domain = ({ name, isOwned, cost, id, ethDaddy, provider }) => {
 
   const buyHandler = async () => {
     const signer = await provider.getSigner();
+    setIsLoading(true)
     const transaction = await ethDaddy
       .connect(signer)
       .mint(id, { value: cost });
 
     await transaction.wait();
-
     setHasSold(true);
-    loadBlockchainData();
+
     getOwner()
+    setIsLoading(false)
   };
 
   useEffect(() => {
@@ -33,6 +36,7 @@ const Domain = ({ name, isOwned, cost, id, ethDaddy, provider }) => {
   }, []);
   return (
     <div className="card flex justify-between items-center w-[90%] h-[60px] border border-gray-800 my-6 pl-6 relative transition-all duration-200 ease-in">
+      {isLoading ? <Loader /> : ""}
       <div className="card__info flex justify-between items-center text-center flex-grow">
         <h3 className=" font-bold sm:text-xl md:text-2xl">
           {isOwned || owner ? <del>{name}</del> : <>{name}</>}
