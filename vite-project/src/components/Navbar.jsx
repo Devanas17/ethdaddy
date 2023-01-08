@@ -51,7 +51,7 @@ const Navbar = () => {
       <div className="flex items-center justify-end  space-x-4">
 
         <Link to={`/?domain=1`}>
-        <button className="bg-black text-white flex items-center justify-center w-32 h-10 hover:opacity-80">List</button>
+        <button className="bg-black text-white flex items-center justify-center w-32 h-10 hover:opacity-80 ">List</button>
         </Link>
 
         {currentAccount ? (

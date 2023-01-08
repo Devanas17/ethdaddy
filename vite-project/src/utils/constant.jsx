@@ -12,7 +12,7 @@ export const modalStyles = {
   },
 };
 
-export const contractABI = "0xfD64a566221059bb2F63b8c20cC7d448da687E7A"
+export const contractABI = "0xd624D253eA6e4Ec01AaE0E907939a07c2dB922ee"
 export const contractAddress = [
   {
     "inputs": [

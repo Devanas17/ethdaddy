@@ -69,8 +69,7 @@ export const AppProvider = ({ children }) => {
         const domain = await ethDaddy.getDomain(i);
         domains.push(domain);
       }
-      setDomains(domains);
-      console.log(domains);
+      setDomains(domains.reverse());
       window.ethereum.on("accountsChanged", async () => {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
@@ -78,7 +77,6 @@ export const AppProvider = ({ children }) => {
         const account = ethers.utils.getAddress(accounts[0]);
         setCurrentAccount(account);
       });
-      console.log("Max supply", maxSupply.toString());
     } catch (error) {
       console.log(error);
     }
@@ -90,11 +88,11 @@ export const AppProvider = ({ children }) => {
 
   const ListDomain = async (name, price) => {
     try {
-      const signer = provider.getSigner();
-      const costInWei = ethers.utils.parseEther(price.toString());
-
-      const transaction = await ethDaddy.connect(signer).list(name, costInWei, {gasLimit: 5000000});
-      await transaction.wait();
+        const signer = provider.getSigner();
+        const costInWei = ethers.utils.parseEther(price.toString());
+        const transaction = await ethDaddy.connect(signer).list(name, costInWei, {gasLimit: 5000000});
+        await transaction.wait();
+      loadBlockchainData()
     } catch (error) {
       console.log(error);
     }
@@ -109,7 +107,7 @@ export const AppProvider = ({ children }) => {
         ethDaddy,
         provider,
         loadBlockchainData,
-        ListDomain
+        ListDomain,
       }}
     >
       {children}
